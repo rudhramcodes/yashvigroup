@@ -3,170 +3,298 @@
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroMotionCanvas();
+  initGhostFibers();
   initCounters();
   initMobileMenu();
   initNavbarScroll();
 });
 
-// 1. Google / Antigravity Interactive Particle Constellation Canvas
-function initHeroMotionCanvas() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
+// ==========================================================================
+// 1. React Bits <GhostFibers /> Component (WebGL2 Native Implementation)
+// ==========================================================================
+function initGhostFibers() {
+  const container = document.getElementById('ghostFibersContainer');
+  if (!container) return;
 
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let animationFrameId;
+  const canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  container.appendChild(canvas);
 
-  // Track mouse coordinates
-  const mouse = {
-    x: null,
-    y: null,
-    radius: 170
+  const gl = canvas.getContext('webgl2', {
+    alpha: false,
+    antialias: false,
+    powerPreference: 'high-performance'
+  });
+
+  if (!gl) {
+    console.warn('WebGL2 not supported on this browser');
+    return;
+  }
+
+  const hexToRgb = hex => {
+    const value = hex.trim().replace(/^#/, '');
+    const normalized = value.length === 3 ? value.replace(/./g, c => c + c) : value;
+    const match = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalized);
+    if (!match) return [1, 1, 1];
+    return [parseInt(match[1], 16) / 255, parseInt(match[2], 16) / 255, parseInt(match[3], 16) / 255];
   };
 
-  const heroSection = document.querySelector('.hero-section');
-  if (heroSection) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
+  const vertexShaderSrc = `#version 300 es
+in vec2 position;
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
 
-    heroSection.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
+  const fragmentShaderSrc = `#version 300 es
+precision highp float;
+
+uniform vec2 uResolution;
+uniform float uTime;
+uniform float uSpeed;
+uniform float uScale;
+uniform float uRotation;
+uniform float uLayers;
+uniform float uWaveAmplitude;
+uniform float uWaveFrequency;
+uniform float uWaveSpeed;
+uniform float uLayerSpeed;
+uniform float uTwist;
+uniform float uTwistFrequency;
+uniform float uTwistSpeed;
+uniform float uLineFrequency;
+uniform float uLineSpacing;
+uniform float uLineSharpness;
+uniform float uGlowFalloff;
+uniform float uGlowIntensity;
+uniform float uBrightness;
+uniform float uBlueBoost;
+uniform float uVignette;
+uniform float uGrain;
+uniform float uRotationSpeed;
+uniform float uLightMode;
+uniform vec3 uLineColor;
+uniform vec3 uGlowColor;
+
+out vec4 fragColor;
+
+#define MAX_LAYERS 10
+
+mat2 rotate2d(float angle) {
+  float sine = sin(angle);
+  float cosine = cos(angle);
+  return mat2(cosine, -sine, sine, cosine);
+}
+
+float grainHash(vec2 point) {
+  point = floor(point);
+  float hash = 52.9829189 * fract(dot(point, vec2(0.065, 0.005)));
+  return fract(hash);
+}
+
+float layeredGrain(vec2 fragmentPixel) {
+  vec2 point = mod(fragmentPixel + vec2(uTime * 30.0, -uTime * 21.0), 1024.0);
+  vec2 rotated = mat2(0.8, -0.5, 0.5, 0.8) * point;
+  float grain = 0.0;
+  grain += 0.40 * grainHash(rotated);
+  grain += 0.25 * grainHash(rotated * 2.0 + 17.0);
+  grain += 0.20 * grainHash(rotated * 4.0 + 47.0);
+  grain += 0.10 * grainHash(rotated * 8.0 + 113.0);
+  grain += 0.05 * grainHash(rotated * 16.0 + 191.0);
+  return grain;
+}
+
+void main() {
+  vec2 resolution = max(uResolution, vec2(1.0));
+  vec2 uv = (2.0 * gl_FragCoord.xy - resolution) / resolution.y;
+  float time = uTime * uSpeed;
+  // Deep midnight slate background matching Yashvi Group palette #0B0F19
+  vec3 backdrop = mix(vec3(0.043137, 0.058824, 0.098039), vec3(1.0), step(0.5, uLightMode));
+  vec3 centerTone = max(uLineColor * 0.85567 - uGlowColor * 0.06186, vec3(0.0));
+  vec3 cloudTone = uLineColor * 0.19588 + uGlowColor * 0.2268;
+  vec2 p = uv;
+  p /= max(uScale, 0.05);
+  p = rotate2d(radians(uRotation) + time * uRotationSpeed) * p;
+  vec3 color = vec3(0.0);
+  float fiberField = 0.0;
+
+  for (int index = 0; index < MAX_LAYERS; index++) {
+    float fi = float(index) + 1.0;
+    if (fi > uLayers) break;
+
+    p += uWaveAmplitude * sin(p.yx * fi * uWaveFrequency + time * (uWaveSpeed + fi * uLayerSpeed));
+
+    float radius = length(p);
+    float polarAngle = atan(p.y, p.x);
+    polarAngle += sin(radius * uTwistFrequency - time * uTwistSpeed + fi) * uTwist;
+    p = vec2(cos(polarAngle), sin(polarAngle)) * radius;
+
+    float lines = abs(sin(p.x * (uLineFrequency + fi * uLineSpacing) + sin(p.y * 3.0 + time)));
+    lines = pow(max(0.0, 1.0 - lines), uLineSharpness);
+    fiberField += lines / fi;
+    color += uLineColor * lines / fi;
+
+    float glow = exp(-uGlowFalloff * abs(sin(p.x * 3.0 + time + fi)));
+    color += uGlowColor * glow * uGlowIntensity / (fi * 2.0);
   }
 
-  // Handle Resize
+  float center = exp(-2.2 * dot(uv, uv));
+  color += centerTone * center;
+
+  float cloud = exp(-1.5 * length(uv + vec2(sin(time * 0.3) * 0.25, cos(time * 0.25) * 0.18)));
+  color += cloudTone * cloud;
+
+  float vignette = 1.0 - smoothstep(0.35, 1.45, length(uv));
+  color *= mix(1.0 - uVignette, 1.0, vignette);
+  color = 1.0 - exp(-color * uBrightness);
+  color.b *= uBlueBoost;
+
+  vec3 outputColor;
+  if (uLightMode > 0.5) {
+    float edgeFade = mix(1.0 - uVignette, 1.0, vignette);
+    float fibers = pow(smoothstep(0.12, 1.05, fiberField) * edgeFade, 1.5);
+    float atmosphere = (center * 0.025 + cloud * 0.015) * edgeFade;
+    vec3 fiberInk = mix(backdrop, uLineColor, 0.52);
+    vec3 airColor = mix(backdrop, uGlowColor, 0.16);
+
+    outputColor = mix(backdrop, airColor, atmosphere);
+    outputColor = mix(outputColor, fiberInk, fibers * 0.3);
+  } else {
+    outputColor = backdrop + color;
+  }
+
+  float noise = (layeredGrain(gl_FragCoord.xy) - 0.5) * uGrain;
+  outputColor = clamp(outputColor + noise, 0.0, 1.0);
+  fragColor = vec4(outputColor, 1.0);
+}
+`;
+
+  function createShader(type, source) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, source);
+    gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error(gl.getShaderInfoLog(s));
+      gl.deleteShader(s);
+      return null;
+    }
+    return s;
+  }
+
+  const vs = createShader(gl.VERTEX_SHADER, vertexShaderSrc);
+  const fs = createShader(gl.FRAGMENT_SHADER, fragmentShaderSrc);
+  const program = gl.createProgram();
+  gl.attachShader(program, vs);
+  gl.attachShader(program, fs);
+  gl.linkProgram(program);
+
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(program));
+    return;
+  }
+
+  gl.useProgram(program);
+
+  // Full-screen Triangle geometry covering WebGL normalized coordinates
+  const positionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1, -1,
+     3, -1,
+    -1,  3
+  ]), gl.STATIC_DRAW);
+
+  const posLoc = gl.getAttribLocation(program, 'position');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  // Uniform locations mapping
+  const u = {
+    uResolution: gl.getUniformLocation(program, 'uResolution'),
+    uTime: gl.getUniformLocation(program, 'uTime'),
+    uSpeed: gl.getUniformLocation(program, 'uSpeed'),
+    uScale: gl.getUniformLocation(program, 'uScale'),
+    uRotation: gl.getUniformLocation(program, 'uRotation'),
+    uRotationSpeed: gl.getUniformLocation(program, 'uRotationSpeed'),
+    uLayers: gl.getUniformLocation(program, 'uLayers'),
+    uWaveAmplitude: gl.getUniformLocation(program, 'uWaveAmplitude'),
+    uWaveFrequency: gl.getUniformLocation(program, 'uWaveFrequency'),
+    uWaveSpeed: gl.getUniformLocation(program, 'uWaveSpeed'),
+    uLayerSpeed: gl.getUniformLocation(program, 'uLayerSpeed'),
+    uTwist: gl.getUniformLocation(program, 'uTwist'),
+    uTwistFrequency: gl.getUniformLocation(program, 'uTwistFrequency'),
+    uTwistSpeed: gl.getUniformLocation(program, 'uTwistSpeed'),
+    uLineFrequency: gl.getUniformLocation(program, 'uLineFrequency'),
+    uLineSpacing: gl.getUniformLocation(program, 'uLineSpacing'),
+    uLineSharpness: gl.getUniformLocation(program, 'uLineSharpness'),
+    uGlowFalloff: gl.getUniformLocation(program, 'uGlowFalloff'),
+    uGlowIntensity: gl.getUniformLocation(program, 'uGlowIntensity'),
+    uBrightness: gl.getUniformLocation(program, 'uBrightness'),
+    uBlueBoost: gl.getUniformLocation(program, 'uBlueBoost'),
+    uVignette: gl.getUniformLocation(program, 'uVignette'),
+    uGrain: gl.getUniformLocation(program, 'uGrain'),
+    uLightMode: gl.getUniformLocation(program, 'uLightMode'),
+    uLineColor: gl.getUniformLocation(program, 'uLineColor'),
+    uGlowColor: gl.getUniformLocation(program, 'uGlowColor')
+  };
+
+  // Configure for Yashvi Group brand palette: Electric Cyan & Cobalt
+  const lineRgb = hexToRgb('#0E1D3B');
+  const glowRgb = hexToRgb('#2563EB');
+
+  gl.uniform3f(u.uLineColor, lineRgb[0], lineRgb[1], lineRgb[2]);
+  gl.uniform3f(u.uGlowColor, glowRgb[0], glowRgb[1], glowRgb[2]);
+  gl.uniform1f(u.uSpeed, 0.2);
+  gl.uniform1f(u.uScale, 2.0);
+  gl.uniform1f(u.uRotation, 0.0);
+  gl.uniform1f(u.uRotationSpeed, 0.25);
+  gl.uniform1f(u.uLayers, 4.0);
+  gl.uniform1f(u.uWaveAmplitude, 0.015);
+  gl.uniform1f(u.uWaveFrequency, 3.0);
+  gl.uniform1f(u.uWaveSpeed, 0.15);
+  gl.uniform1f(u.uLayerSpeed, 0.08);
+  gl.uniform1f(u.uTwist, 0.1);
+  gl.uniform1f(u.uTwistFrequency, 5.0);
+  gl.uniform1f(u.uTwistSpeed, 1.2);
+  gl.uniform1f(u.uLineFrequency, 5.0);
+  gl.uniform1f(u.uLineSpacing, 2.0);
+  gl.uniform1f(u.uLineSharpness, 16.0);
+  gl.uniform1f(u.uGlowFalloff, 10.0);
+  gl.uniform1f(u.uGlowIntensity, 1.6);
+  gl.uniform1f(u.uBrightness, 2.0);
+  gl.uniform1f(u.uBlueBoost, 1.35);
+  gl.uniform1f(u.uVignette, 0.8);
+  gl.uniform1f(u.uGrain, 0.05);
+  gl.uniform1f(u.uLightMode, 0.0);
+
   function resize() {
-    const dpr = window.devicePixelRatio || 1;
-    width = canvas.parentElement.offsetWidth;
-    height = canvas.parentElement.offsetHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
+    const rect = container.getBoundingClientRect();
+    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 0.5), 2);
+    const width = Math.max(1, Math.floor(rect.width * dpr));
+    const height = Math.max(1, Math.floor(rect.height * dpr));
+
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+      gl.viewport(0, 0, width, height);
+      gl.uniform2f(u.uResolution, width, height);
+    }
   }
 
-  window.addEventListener('resize', () => {
-    resize();
-    createParticles();
-  });
   resize();
+  window.addEventListener('resize', resize, { passive: true });
 
-  // Particle Class
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.size = Math.random() * 2.2 + 1.2;
-      this.baseX = this.x;
-      this.baseY = this.y;
-      this.vx = (Math.random() - 0.5) * 0.55;
-      this.vy = (Math.random() - 0.5) * 0.55;
-      this.color = Math.random() > 0.4 ? 'rgba(6, 182, 212, ' : 'rgba(37, 99, 235, ';
-      this.alpha = Math.random() * 0.6 + 0.3;
-    }
+  let startTime = performance.now();
+  let rafId;
 
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color + this.alpha + ')';
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = 'rgba(6, 182, 212, 0.4)';
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
-
-    update() {
-      // Natural drifting
-      this.x += this.vx;
-      this.y += this.vy;
-
-      // Bounce off boundaries
-      if (this.x < 0 || this.x > width) this.vx = -this.vx;
-      if (this.y < 0 || this.y > height) this.vy = -this.vy;
-
-      // Mouse interactivity (Antigravity repulsion & connection)
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          const angle = Math.atan2(dy, dx);
-          this.x -= Math.cos(angle) * force * 3;
-          this.y -= Math.sin(angle) * force * 3;
-        }
-      }
-    }
+  function render(time) {
+    const elapsed = (time - startTime) * 0.001;
+    gl.uniform1f(u.uTime, elapsed);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    rafId = requestAnimationFrame(render);
   }
 
-  let particles = [];
-  function createParticles() {
-    particles = [];
-    const count = Math.floor((width * height) / 14000);
-    const safeCount = Math.min(Math.max(count, 45), 95);
-    for (let i = 0; i < safeCount; i++) {
-      particles.push(new Particle());
-    }
-  }
-  createParticles();
-
-  // Connect particles with delicate geometric lines
-  function connect() {
-    const maxDist = 125;
-    for (let a = 0; a < particles.length; a++) {
-      for (let b = a + 1; b < particles.length; b++) {
-        const dx = particles[a].x - particles[b].x;
-        const dy = particles[a].y - particles[b].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < maxDist) {
-          const opacity = (1 - dist / maxDist) * 0.22;
-          ctx.strokeStyle = `rgba(6, 182, 212, ${opacity})`;
-          ctx.lineWidth = 0.9;
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(particles[b].x, particles[b].y);
-          ctx.stroke();
-        }
-      }
-
-      // Connect to mouse if close
-      if (mouse.x !== null && mouse.y !== null) {
-        const dxMouse = particles[a].x - mouse.x;
-        const dyMouse = particles[a].y - mouse.y;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-
-        if (distMouse < mouse.radius) {
-          const opacity = (1 - distMouse / mouse.radius) * 0.35;
-          ctx.strokeStyle = `rgba(34, 211, 238, ${opacity})`;
-          ctx.lineWidth = 1.1;
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
-      }
-    }
-  }
-
-  // Animation Loop
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-    }
-    connect();
-
-    animationFrameId = requestAnimationFrame(animate);
-  }
-  animate();
+  rafId = requestAnimationFrame(render);
 }
 
 // 2. Animated Stats Counters with Intersection Observer
@@ -247,7 +375,7 @@ function initNavbarScroll() {
 }
 
 // 5. Division Button Selector in Universal Lead Form
-window.setCategory = function(buttonElement, categoryName) {
+window.setCategory = function (buttonElement, categoryName) {
   const buttons = document.querySelectorAll('.div-btn');
   buttons.forEach(b => b.classList.remove('active'));
   buttonElement.classList.add('active');
@@ -259,7 +387,7 @@ window.setCategory = function(buttonElement, categoryName) {
 };
 
 // Helper to trigger category selection from external buttons
-window.selectInquiryType = function(typeKey) {
+window.selectInquiryType = function (typeKey) {
   const mapping = {
     'sponsorship': 'Event Sponsorship & Stalls',
     'digital': 'Digital Marketing & Studio',
@@ -270,7 +398,7 @@ window.selectInquiryType = function(typeKey) {
 
   const categoryName = mapping[typeKey] || 'General / CSR Inquiries';
   const matchingBtn = document.querySelector(`.div-btn[data-category="${typeKey}"]`);
-  
+
   if (matchingBtn) {
     window.setCategory(matchingBtn, categoryName);
   }
@@ -287,9 +415,9 @@ window.selectInquiryType = function(typeKey) {
 };
 
 // 6. Handle Form Submit with In-page Feedback
-window.handleFormSubmit = function(event) {
+window.handleFormSubmit = function (event) {
   event.preventDefault();
-  
+
   const submitBtn = document.getElementById('submitBtn');
   const successBanner = document.getElementById('successBanner');
   const form = document.getElementById('leadForm');
