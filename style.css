@@ -626,6 +626,26 @@ img {
   margin-bottom: 44px;
 }
 
+.section-title-block.text-center {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.section-title-block.text-center .section-heading {
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.section-title-block.text-center .section-subtext {
+  text-align: center;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section-kicker {
   font-size: 12px;
   font-weight: 700;
