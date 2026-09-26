@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yashvi Group | Surat, Gujarat</title>
+  <meta name="description" content="Official corporate portal of Yashvi Group Surat. Uniting Yashvi Entertainments, Yashvi Digital, Yashvi Voice and News, and IHG Hospitality.">
+  
+  <!-- Premium Typography: Plus Jakarta Sans for UI & Outfit for Headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Clean Executive Navigation -->
+  <header class="site-header" id="navbar">
+    <div class="container header-container">
+      <a href="#" class="brand-logo">
+        <span class="brand-name">YASHVI GROUP</span>
+        <span class="brand-tag">SURAT</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#about" class="nav-link">About Group</a>
+        <a href="#events" class="nav-link">Live Events</a>
+        <a href="#artists" class="nav-link">Featured Artists</a>
+        <a href="#digital" class="nav-link">Digital Studio</a>
+        <a href="#news" class="nav-link">Voice & News</a>
+        <a href="#hospitality" class="nav-link">Hospitality & Energy</a>
+        <a href="#press" class="nav-link">Press</a>
+        <div class="mobile-menu-actions">
+          <a href="#contact" class="btn btn-primary btn-block">
+            <span>Partner With Us</span>
+            <i class="ph ph-arrow-up-right"></i>
+          </a>
+          <a href="tel:+917490049007" class="mobile-phone-btn">
+            <i class="ph ph-phone"></i>
+            <span>Call: +91 7490049007</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+917490049007" class="phone-link">
+          <i class="ph ph-phone"></i>
+          <span>+91 7490049007</span>
+        </a>
+        <a href="#contact" class="btn btn-primary">
+          <span>Partner With Us</span>
+          <i class="ph ph-arrow-up-right"></i>
+        </a>
+        <button class="mobile-toggle" id="menuToggle" aria-label="Toggle menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (Bespoke Corporate Editorial with Real Photography) -->
+  <section class="hero-section" id="about">
+    <!-- Interactive Antigravity Motion Particle Canvas -->
+    <canvas id="heroCanvas" class="hero-interactive-canvas"></canvas>
+    <div class="hero-back-radiance"></div>
+
+    <div class="container hero-container-rel">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Pioneering Culture, Media and Enterprise Across Gujarat.
+        </h1>
+        <p class="hero-subtitle">
+          Headquartered at Rio Empire in Surat, Yashvi Group operates across stadium-scale entertainment festivals, 360 degree digital agency production, grassroots community journalism, and international hospitality partnerships.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="#events" class="btn btn-primary btn-lg">
+            <span>Explore Live Events</span>
+            <i class="ph ph-arrow-down-right"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary btn-lg">
+            <span>Sponsorship & Business Inquiries</span>
+            <i class="ph ph-buildings"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Real Conglomerate Bento Showcase Grid -->
+      <div class="hero-bento-grid">
+        
+        <!-- Bento 1: Yashvi Navratri 3.0 Live Showcase with Real Poster -->
+        <div class="bento-card bento-card-event">
+          <div class="bento-image-wrapper">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/26deb2aa65cae59639af7e04760ee124.jpg" alt="Yashvi Navratri 3.0 Purva Mantri" class="bento-img">
+            <div class="image-gradient-overlay"></div>
+            <div class="bento-floating-tag">Upcoming Flagship IP</div>
+          </div>
+          <div class="bento-body">
+            <div class="bento-meta-row">
+              <span class="meta-label">Entertainment Vertical</span>
+              <span class="meta-status">Oct 11 to 22, 2026</span>
+            </div>
+            <h3>Yashvi Navratri 3.0</h3>
+            <p>Featuring Purva Mantri and Falguni Pathak inside a massive, fully air-conditioned dome at CB Patel Stadium, Vesu, Surat.</p>
+            <div class="bento-action-row">
+              <a href="https://yashvi-entertainments.com" target="_blank" class="btn btn-mini btn-glow">Book Passes on App <i class="ph ph-arrow-up-right"></i></a>
+              <span class="capacity-pill"><i class="ph ph-users"></i> 18,000+ Capacity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 2: Yashvi Digital 360 Studio -->
+        <div class="bento-card bento-card-digital">
+          <div class="bento-body">
+            <div class="bento-meta-row">
+              <span class="meta-label">Agency & Production</span>
+              <span class="meta-sub">Rio Empire Studio</span>
+            </div>
+            <h3>Yashvi Digital Studio</h3>
+            <p>From high-retention commercial video shoots and podcast recordings to multi-channel ad campaigns across Gujarat.</p>
+            <div class="digital-services-tags">
+              <span>Commercial Shoots</span>
+              <span>Podcasts</span>
+              <span>Reels & Video Ads</span>
+              <span>Outdoor Hoardings</span>
+              <span>Meta & Google Ads</span>
+            </div>
+            <div class="bento-action-row">
+              <a href="#contact" class="btn btn-mini btn-outline" onclick="selectInquiryType('digital')">Request Proposal &rarr;</a>
+              <span class="client-rating"><i class="ph-fill ph-star"></i> 360&deg; Full Service</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 3: Yashvi Voice & Newsdesk -->
+        <div class="bento-card bento-card-news">
+          <div class="bento-body">
+            <div class="bento-meta-row">
+              <span class="meta-label">Community Media Desk</span>
+              <span class="meta-sub">Surat No Potano Awaj</span>
+            </div>
+            <h3>Yashvi Voice & News</h3>
+            <p>Delivering verified city updates, civic affairs, cultural reporting, and real-time WhatsApp community broadcasts.</p>
+            <div class="news-stats-strip">
+              <div class="stat-pill-item">
+                <strong>150,000+</strong>
+                <span>Surat Citizens Reached</span>
+              </div>
+              <div class="stat-pill-item">
+                <strong>Daily</strong>
+                <span>Live Ground Coverage</span>
+              </div>
+            </div>
+            <div class="bento-action-row">
+              <a href="https://www.instagram.com/yashvientertainments/?hl=en" target="_blank" class="btn btn-mini btn-outline">Follow @yashvivoice &rarr;</a>
+              <a href="https://wa.me/917490049007" target="_blank" class="btn-wa-link"><i class="ph-fill ph-whatsapp-logo"></i> WhatsApp Desk</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 4: IHG Hotels Partnership -->
+        <div class="bento-card bento-card-ihg">
+          <div class="bento-body">
+            <div class="bento-meta-row">
+              <span class="meta-label">Hospitality & Infrastructure</span>
+              <span class="meta-sub">Global Brand Tie-up</span>
+            </div>
+            <h3>Holiday Inn Express Surat Gauravpath</h3>
+            <p>Yashvi Greenco LLP has partnered with international hospitality titan IHG Hotels & Resorts to develop premium business accommodation on Surat's primary commercial corridor.</p>
+            <div class="bento-action-row">
+              <span class="ihg-verified-pill"><i class="ph ph-check-circle"></i> Official IHG Partnership</span>
+              <a href="#hospitality" class="btn btn-mini btn-outline">Learn More &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers that Define Scale -->
+  <section class="metrics-section">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num"><span class="counter" data-target="50000">0</span>+</div>
+          <div class="metric-title">Annual Event Attendees</div>
+          <p>Celebrating together in custom climate-controlled dome arenas across Surat.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num"><span class="counter" data-target="15">0</span>+</div>
+          <div class="metric-title">Premier Artist Lineups</div>
+          <p>National Bollywood composers, legendary playback voices, and folk icons.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">World Record</div>
+          <div class="metric-title">Global Excellence Records</div>
+          <p>Officially recognized for organizing massive indoor AC dome Garba festivals.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">Global Scale</div>
+          <div class="metric-title">IHG Hotels Partnership</div>
+          <p>Partnered with InterContinental Hotels Group for modern Surat hospitality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live and Upcoming Events Section (Real Event Posters & Ticketing) -->
+  <section class="events-section" id="events">
+    <div class="container">
+      <div class="section-title-block">
+        <div>
+          <span class="section-kicker">Yashvi Entertainments</span>
+          <h2 class="section-heading">Current & Upcoming Cultural Showcases</h2>
+        </div>
+        <p class="section-subtext">
+          Browse upcoming festival dates, reserve corporate sponsor lounges, or book event passes directly via the official Yashvi mobile apps.
+        </p>
+      </div>
+
+      <div class="events-grid">
+        
+        <!-- Event Card 1: Purva Mantri Navratri -->
+        <div class="event-card">
+          <div class="event-poster-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/26deb2aa65cae59639af7e04760ee124.jpg" alt="Yashvi Navratri 3.0 Purva Mantri" class="event-poster">
+            <div class="event-badge-overlay">Live Booking</div>
+          </div>
+          <div class="event-details">
+            <span class="event-category">Navratri Garba Festival</span>
+            <h3>Yashvi Navratri 3.0 &bull; Purva Mantri</h3>
+            <div class="event-info-list">
+              <div class="info-row"><i class="ph ph-calendar"></i> Sun, Oct 11 to Tue, Oct 20 &bull; 08:00 PM</div>
+              <div class="info-row"><i class="ph ph-map-pin"></i> AC Dome, CB Patel Stadium, Vesu, Surat</div>
+              <div class="info-row"><i class="ph ph-ticket"></i> Passes from &#8377;1,999 onwards</div>
+            </div>
+            <div class="event-card-actions">
+              <a href="https://yashvi-entertainments.com" target="_blank" class="btn btn-primary btn-block">
+                <span>Book Passes on Yashvi App</span>
+                <i class="ph ph-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Card 2: Falguni Pathak Navratri -->
+        <div class="event-card">
+          <div class="event-poster-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/a6317a49a76bd154f24fbde3fd47a78a.jpg" alt="Yashvi Navratri 3.0 Falguni Pathak" class="event-poster">
+            <div class="event-badge-overlay">Mega Night</div>
+          </div>
+          <div class="event-details">
+            <span class="event-category">Dandiya Special Night</span>
+            <h3>Yashvi Navratri 3.0 &bull; Falguni Pathak</h3>
+            <div class="event-info-list">
+              <div class="info-row"><i class="ph ph-calendar"></i> Thu, Oct 22 &bull; 08:00 PM Onwards</div>
+              <div class="info-row"><i class="ph ph-map-pin"></i> AC Dome, CB Patel Stadium, Vesu, Surat</div>
+              <div class="info-row"><i class="ph ph-ticket"></i> Passes from &#8377;2,499 onwards</div>
+            </div>
+            <div class="event-card-actions">
+              <a href="https://yashvi-entertainments.com" target="_blank" class="btn btn-primary btn-block">
+                <span>Book Passes on Yashvi App</span>
+                <i class="ph ph-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Card 3: Mithoon & Palak Muchhal Tour -->
+        <div class="event-card">
+          <div class="event-poster-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/92a1a8c573676579944e2532f434bb41.jpg" alt="Mithoon and Palak Muchhal Live" class="event-poster">
+            <div class="event-badge-overlay">Concert Symphony</div>
+          </div>
+          <div class="event-details">
+            <span class="event-category">Bollywood Live Concert</span>
+            <h3>Mithoon & Palak Muchhal Live</h3>
+            <div class="event-info-list">
+              <div class="info-row"><i class="ph ph-calendar"></i> Annual Live Tour Edition</div>
+              <div class="info-row"><i class="ph ph-map-pin"></i> Surat Arena & Concert Grounds</div>
+              <div class="info-row"><i class="ph ph-music-notes"></i> Complete Bollywood Orchestral Ensemble</div>
+            </div>
+            <div class="event-card-actions">
+              <a href="#contact" class="btn btn-secondary btn-block" onclick="selectInquiryType('sponsorship')">
+                <span>Inquire for Corporate VIP Access</span>
+                <i class="ph ph-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- App Download Bar -->
+      <div class="app-banner-strip">
+        <div class="app-banner-content">
+          <div class="app-banner-text">
+            <h4>Download the Official Yashvi Entertainments App</h4>
+            <p>Browse upcoming stadium concerts, manage digital QR entry passes, and receive priority festival updates.</p>
+          </div>
+          <div class="app-buttons-group">
+            <a href="https://play.google.com/store/apps/details?id=com.yashvientertainments.apps" target="_blank" class="store-badge">
+              <i class="ph-fill ph-google-play-logo"></i>
+              <div>
+                <small>GET IT ON</small>
+                <strong>Google Play</strong>
+              </div>
+            </a>
+            <a href="https://apps.apple.com/in/app/yashvi-entertainments/id6762739777" target="_blank" class="store-badge">
+              <i class="ph-fill ph-apple-logo"></i>
+              <div>
+                <small>Download on the</small>
+                <strong>App Store</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Featured Artists Showcase (Real Artists Photos from Yashvi Roster) -->
+  <section class="artists-section" id="artists">
+    <div class="container">
+      <div class="section-title-block text-center">
+        <span class="section-kicker">Artist Relationships</span>
+        <h2 class="section-heading">India's Renowned Artists on Yashvi Stages</h2>
+        <p class="section-subtext mx-auto">
+          We bring the finest musical, classical, and cinematic talent to Gujarat with premier sound production and VIP hospitality.
+        </p>
+      </div>
+
+      <div class="artists-grid">
+        
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/e49fe81d533f73f990f0ff6acd9d8052.png" alt="Falguni Pathak" class="artist-img">
+          </div>
+          <h4>Falguni Pathak</h4>
+          <span class="artist-role">The Dandiya Queen</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/e83667701958154076dc7b2b3611d919.png" alt="Purva Mantri" class="artist-img">
+          </div>
+          <h4>Purva Mantri</h4>
+          <span class="artist-role">Folk & Bollywood Singer</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/baa1ddd74c8fd237b146ed455392a071.png" alt="Mithoon Sharma" class="artist-img">
+          </div>
+          <h4>Mithoon Sharma</h4>
+          <span class="artist-role">Music Composer & Director</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/c9df0ad9220157d3dbc2a746da4fbf2e.png" alt="Palak Muchhal" class="artist-img">
+          </div>
+          <h4>Palak Muchhal</h4>
+          <span class="artist-role">Bollywood Playback Singer</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/6d04937d916e53f0f70ceb3159c8f9f6.png" alt="Sukhwinder Singh" class="artist-img">
+          </div>
+          <h4>Sukhwinder Singh</h4>
+          <span class="artist-role">National Award Playback Voice</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/1e1385de26e87143d367e144cab23bea.png" alt="Kinjal Dave" class="artist-img">
+          </div>
+          <h4>Kinjal Dave</h4>
+          <span class="artist-role">Gujarati Folk Sensation</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/1c8bd1486d03a8c9aa4a1fbfeca32f63.png" alt="Divya Kumar" class="artist-img">
+          </div>
+          <h4>Divya Kumar</h4>
+          <span class="artist-role">Bollywood Playback Artist</span>
+        </div>
+
+        <div class="artist-item">
+          <div class="artist-avatar-wrap">
+            <img src="https://cdn.yashvi-entertainments.com/store/uploads/ea288979a1075d7a74478ccf76337702.png" alt="Bhoomi Trivedi" class="artist-img">
+          </div>
+          <h4>Bhoomi Trivedi</h4>
+          <span class="artist-role">Bollywood Singer</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Video & Past Event Highlights Showcase -->
+  <section class="highlights-section">
+    <div class="container">
+      <div class="section-title-block">
+        <div>
+          <span class="section-kicker">Event Footage & Moments</span>
+          <h2 class="section-heading">Past Event Highlights in Surat</h2>
+        </div>
+        <p class="section-subtext">
+          Relive moments from our past stadium celebrations, cultural assemblies, and high-energy music tours.
+        </p>
+      </div>
+
+      <div class="video-grid">
+        
+        <div class="video-card">
+          <div class="video-thumb-wrap">
+            <img src="https://img.youtube.com/vi/fp4YMVs5qJU/hqdefault.jpg" alt="Yashvi Navratri 2024" class="video-thumb">
+            <a href="https://www.youtube.com/watch?v=fp4YMVs5qJU" target="_blank" class="play-btn" aria-label="Play Video">
+              <i class="ph-fill ph-play"></i>
+            </a>
+          </div>
+          <div class="video-caption">
+            <h4>Yashvi Navratri 2024</h4>
+            <p>18,000+ dancers celebrating inside the specialized air-conditioned dome in Vesu, Surat.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb-wrap">
+            <img src="https://img.youtube.com/vi/BmVyl9TxcqI/hqdefault.jpg" alt="Mithoon and Palak Concert" class="video-thumb">
+            <a href="https://www.youtube.com/watch?v=BmVyl9TxcqI" target="_blank" class="play-btn" aria-label="Play Video">
+              <i class="ph-fill ph-play"></i>
+            </a>
+          </div>
+          <div class="video-caption">
+            <h4>Mithoon & Palak Muchhal Symphony</h4>
+            <p>Soulful orchestral live concert featuring Bollywood classics and live symphonic arrangements.</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb-wrap">
+            <img src="https://img.youtube.com/vi/A0I5xMMRU7s/hqdefault.jpg" alt="Ramotsav Surat" class="video-thumb">
+            <a href="https://www.youtube.com/watch?v=A0I5xMMRU7s" target="_blank" class="play-btn" aria-label="Play Video">
+              <i class="ph-fill ph-play"></i>
+            </a>
+          </div>
+          <div class="video-caption">
+            <h4>Ramotsav Celebration</h4>
+            <p>Grand cultural and devotional spectacle celebrating tradition and community unity.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Yashvi Digital: Agency & Studio Section -->
+  <section class="digital-section" id="digital">
+    <div class="container">
+      <div class="split-section-grid">
+        <div class="split-text-col">
+          <span class="section-kicker">Creative Studio & Media Agency</span>
+          <h2 class="section-heading">Yashvi Digital &bull; 360 Degree Growth for Ambitious Brands</h2>
+          <p class="body-p">
+            Yashvi Digital is our integrated creative studio and advertising partner. Based at Rio Empire in Surat, we help regional businesses and national brands establish commanding market authority through cinematic commercial film production, viral social reels, podcast recording, and high-impact media planning.
+          </p>
+
+          <div class="service-pill-grid">
+            <div class="service-feature-card">
+              <i class="ph ph-video"></i>
+              <div>
+                <strong>Commercial Video Production</strong>
+                <p>Corporate documentaries, television commercials, and multi-angle product photography.</p>
+              </div>
+            </div>
+
+            <div class="service-feature-card">
+              <i class="ph ph-microphone"></i>
+              <div>
+                <strong>In-House Podcast Studio</strong>
+                <p>Fully equipped audio-visual studio for executive podcasts, interviews, and brand conversations.</p>
+              </div>
+            </div>
+
+            <div class="service-feature-card">
+              <i class="ph ph-broadcast"></i>
+              <div>
+                <strong>Omnichannel Media Buying</strong>
+                <p>Paid performance marketing on Meta and Google, combined with prime Surat outdoor hoardings, radio, and cinema ads.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="split-action-row">
+            <a href="#contact" class="btn btn-primary" onclick="selectInquiryType('digital')">
+              <span>Request Agency Proposal</span>
+              <i class="ph ph-arrow-up-right"></i>
+            </a>
+            <a href="tel:+917490049007" class="btn btn-secondary">
+              <span>Schedule Studio Visit</span>
+              <i class="ph ph-phone"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="split-visual-col">
+          <div class="studio-card-box">
+            <div class="studio-header-strip">
+              <span class="tag-bold">Rio Empire Studio Facility</span>
+              <span class="studio-city">Surat, Gujarat</span>
+            </div>
+            <div class="quote-testimonial-inner">
+              <i class="ph-fill ph-quotes"></i>
+              <p>"We combine high-end creative storytelling with measurable business outcomes. Whether producing a campaign for a jewelry house, a textile major, or a regional institution, we build content that converts."</p>
+              <strong>Yashvi Digital Production Team</strong>
+            </div>
+            <div class="studio-stats-row">
+              <div>
+                <span class="s-val">100+</span>
+                <span class="s-lbl">Commercial Campaigns</span>
+              </div>
+              <div>
+                <span class="s-val">360&deg;</span>
+                <span class="s-lbl">Media Integration</span>
+              </div>
+              <div>
+                <span class="s-val">Surat</span>
+                <span class="s-lbl">Production Hub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yashvi Voice & Newsdesk Section -->
+  <section class="newsdesk-section" id="news">
+    <div class="container">
+      <div class="split-section-grid reverse-split">
+        <div class="split-visual-col">
+          <div class="newsdesk-visual-frame">
+            <div class="newsdesk-top-bar">
+              <div class="live-dot-wrap">
+                <span class="live-red-dot"></span>
+                <strong>Yashvi Voice Newsdesk</strong>
+              </div>
+              <span>Surat, India</span>
+            </div>
+
+            <div class="newsdesk-headlines-list">
+              <div class="headline-entry">
+                <span class="entry-category">City Infrastructure</span>
+                <h5>Surat Ro-Pax Ferry & Hazira Industrial Port: Complete Connectivity Report</h5>
+                <span class="entry-date">Verified Civic News</span>
+              </div>
+              <div class="headline-entry">
+                <span class="entry-category">Culture & Festivals</span>
+                <h5>Yashvi Navratri 3.0 AC Dome Construction Complete: 18,000 Nightly Capacity</h5>
+                <span class="entry-date">Festival Exclusive</span>
+              </div>
+              <div class="headline-entry">
+                <span class="entry-category">Community Welfare</span>
+                <h5>Yashvi Foundation Organizes Free Medical & Diagnostic Health Camps at Adajan</h5>
+                <span class="entry-date">Social Upliftment</span>
+              </div>
+            </div>
+
+            <div class="newsdesk-wa-banner">
+              <div class="wa-banner-text">
+                <i class="ph-fill ph-whatsapp-logo"></i>
+                <div>
+                  <strong>Join the Yashvi Voice WhatsApp Channel</strong>
+                  <p>Get real-time Surat news, festive guidelines, and civic updates.</p>
+                </div>
+              </div>
+              <a href="https://wa.me/917490049007" target="_blank" class="btn btn-mini btn-glow">Join Channel &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-text-col">
+          <span class="section-kicker">Independent Community Media</span>
+          <h2 class="section-heading">Yashvi Voice &bull; The Authentic Voice of Surat</h2>
+          <p class="body-p">
+            Recognized locally by its motto "Surat No Potano Awaj", Yashvi Voice is our dedicated digital news and community journalism platform. We provide authentic, ground-level coverage of the stories that matter to Surat citizens: municipal developments, infrastructure progress, festive guides, and human interest spotlights.
+          </p>
+
+          <div class="newsdesk-values-list">
+            <div class="nv-item">
+              <i class="ph-bold ph-check"></i>
+              <div>
+                <strong>Ground-Level Civic Reporting</strong>
+                <p>Real-time updates on traffic advisories, municipal corporation initiatives, and Hazira industrial logistics.</p>
+              </div>
+            </div>
+            <div class="nv-item">
+              <i class="ph-bold ph-check"></i>
+              <div>
+                <strong>Cultural & Festive Coverage</strong>
+                <p>Surat's most comprehensive guides to Navratri, Ganesh Utsav, and youth community initiatives.</p>
+              </div>
+            </div>
+            <div class="nv-item">
+              <i class="ph-bold ph-check"></i>
+              <div>
+                <strong>Over 150,000 Active Citizen Followers</strong>
+                <p>Engaging Surat residents across Instagram (@yashvivoice), Facebook, and dedicated broadcast communities.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="split-action-row">
+            <a href="https://www.instagram.com/yashvientertainments/?hl=en" target="_blank" class="btn btn-primary">
+              <span>Follow on Instagram</span>
+              <i class="ph-fill ph-instagram-logo"></i>
+            </a>
+            <a href="#contact" class="btn btn-secondary" onclick="selectInquiryType('news')">
+              <span>Submit News Tip</span>
+              <i class="ph ph-paper-plane-tilt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hospitality, Energy & Foundation Section -->
+  <section class="hospitality-section" id="hospitality">
+    <div class="container">
+      <div class="section-title-block text-center">
+        <span class="section-kicker">Strategic Diversification</span>
+        <h2 class="section-heading">Hospitality, Energy & Social Impact</h2>
+        <p class="section-subtext mx-auto">
+          Strengthening Surat's industrial and corporate ecosystem through global hospitality partnerships, reliable fuel supply chains, and humanitarian initiatives.
+        </p>
+      </div>
+
+      <div class="pillars-three-grid">
+        
+        <!-- Pillar 1: Hospitality -->
+        <div class="pillar-card">
+          <div class="pillar-icon-box icon-ihg">
+            <i class="ph ph-buildings"></i>
+          </div>
+          <span class="pillar-label">Global Branded Hospitality</span>
+          <h3>Holiday Inn Express Surat Gauravpath</h3>
+          <p>
+            Developed by Yashvi Greenco LLP in partnership with IHG Hotels & Resorts. Located on Surat's primary Gauravpath arterial route, bringing international hospitality standards to business travelers visiting Surat's textile, diamond, and manufacturing corridors.
+          </p>
+          <ul class="pillar-bullet-list">
+            <li><i class="ph-bold ph-check"></i> International standard business suites</li>
+            <li><i class="ph-bold ph-check"></i> Prime airport and expressway connectivity</li>
+            <li><i class="ph-bold ph-check"></i> High-speed connectivity & corporate amenities</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: Industrial Minerals -->
+        <div class="pillar-card">
+          <div class="pillar-icon-box icon-coal">
+            <i class="ph ph-lightning"></i>
+          </div>
+          <span class="pillar-label">Industrial Energy Logistics</span>
+          <h3>Yashvi Coal & Minerals Pvt. Ltd.</h3>
+          <p>
+            Operating since 2015, specializing in the direct bulk import and distribution of premium industrial steam coal from Indonesia and South Africa. Supplying reliable energy to textile mills, power units, and manufacturing plants across Western India.
+          </p>
+          <ul class="pillar-bullet-list">
+            <li><i class="ph-bold ph-check"></i> Direct import terminal contracts</li>
+            <li><i class="ph-bold ph-check"></i> Consistent thermal grade quality control</li>
+            <li><i class="ph-bold ph-check"></i> Established supply chain across Gujarat</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3: Foundation -->
+        <div class="pillar-card">
+          <div class="pillar-icon-box icon-csr">
+            <i class="ph ph-heart"></i>
+          </div>
+          <span class="pillar-label">Humanitarian Responsibility</span>
+          <h3>Yashvi Foundation & Anand Vatika</h3>
+          <p>
+            Founded by Paresh Jhabarmal Khandelwal, Yashvi Foundation oversees meaningful social development programs in South Gujarat. Its signature initiative, Anand Vatika, provides complete housing, nutrition, healthcare, and schooling for HIV-positive orphan girls.
+          </p>
+          <ul class="pillar-bullet-list">
+            <li><i class="ph-bold ph-check"></i> Yashvi Anand Vatika home for orphan girls</li>
+            <li><i class="ph-bold ph-check"></i> Regular free community medical checkup camps</li>
+            <li><i class="ph-bold ph-check"></i> Civic patriotism initiatives (Operation Sindoor)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Press & Accolades Section (Loom Newsroom Style, Polished) -->
+  <section class="press-section" id="press">
+    <div class="container">
+      <div class="section-title-block">
+        <div>
+          <span class="section-kicker">Verified Recognition</span>
+          <h2 class="section-heading">Press Highlights & Milestones</h2>
+        </div>
+        <p class="section-subtext">Documented milestones across cultural records, corporate alliances, and social impact.</p>
+      </div>
+
+      <!-- Spotlight Citation Card -->
+      <div class="press-spotlight-card">
+        <div class="spotlight-badge-line">
+          <i class="ph-fill ph-trophy"></i>
+          <span>Official World Record Citation</span>
+        </div>
+        <h3>Global Excellence Book of Records Recognizes Yashvi Entertainments</h3>
+        <p>
+          Officially acknowledged for pioneering massive indoor Garba gatherings inside specialized climate-controlled domes, setting a new benchmark for cultural heritage preservation combined with world-class attendee comfort and crowd safety in Surat.
+        </p>
+        <div class="spotlight-citation-row">
+          <span><i class="ph ph-map-pin"></i> Surat, Gujarat Edition</span>
+          <a href="https://globalexcellencebookofrecords.com" target="_blank" class="btn btn-mini btn-glow">View Official Entry &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Press Grid -->
+      <div class="press-articles-grid">
+        
+        <div class="press-article-card">
+          <span class="article-source">Hospitality Milestone</span>
+          <h4>IHG Signs Agreement for Holiday Inn Express Surat Gauravpath with Yashvi Greenco</h4>
+          <p>Expanding international hospitality infrastructure on Surat's primary commercial corridor.</p>
+          <a href="#hospitality" class="article-link">Read overview &rarr;</a>
+        </div>
+
+        <div class="press-article-card">
+          <span class="article-source">Concert Tour</span>
+          <h4>Mithoon & Palak Muchhal Live Symphony Tour Enthralls Surat Audience</h4>
+          <p>Over 10,000 music enthusiasts gathered for a soulful Bollywood orchestral evening organized with seamless precision.</p>
+          <a href="#events" class="article-link">View highlights &rarr;</a>
+        </div>
+
+        <div class="press-article-card">
+          <span class="article-source">Cultural Leadership</span>
+          <h4>Yashvi Navratri 3.0 Featuring Purva Mantri & Falguni Pathak at CB Patel Dome</h4>
+          <p>Surat gears up for the season's premier Navratri celebration featuring custom acoustics and digital ticketing.</p>
+          <a href="#events" class="article-link">View event dates &rarr;</a>
+        </div>
+
+        <div class="press-article-card">
+          <span class="article-source">Social Impact</span>
+          <h4>Yashvi Anand Vatika Expands Educational Support for Orphan Girls in Gujarat</h4>
+          <p>Paresh Khandelwal strengthens philanthropic care providing nourishment, schooling, and life security.</p>
+          <a href="#hospitality" class="article-link">Learn about CSR &rarr;</a>
+        </div>
+
+        <div class="press-article-card">
+          <span class="article-source">Digital Reach</span>
+          <h4>Yashvi Voice Connects Over 150,000 Active Citizens Across Surat</h4>
+          <p>Establishing itself as an essential independent source for verified local civic updates and community stories.</p>
+          <a href="#news" class="article-link">Explore newsdesk &rarr;</a>
+        </div>
+
+        <div class="press-article-card">
+          <span class="article-source">Industrial Energy</span>
+          <h4>Yashvi Coal & Minerals Strengthens Steady Supply for Surat Textile Plants</h4>
+          <p>Direct supply contracts from major Indonesian and South African ports to Hazira and Surat manufacturing hubs.</p>
+          <a href="#hospitality" class="article-link">Energy operations &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Spotlight: Paresh Khandelwal & Rio Empire HQ -->
+  <section class="leadership-section">
+    <div class="container">
+      <div class="leadership-frame">
+        <div class="leadership-text-col">
+          <span class="section-kicker">Leadership & Vision</span>
+          <h2 class="leadership-name">Paresh Jhabarmal Khandelwal</h2>
+          <span class="leadership-title">Founder & Chairman, Yashvi Group</span>
+          
+          <blockquote class="leadership-quote">
+            "Our vision for Yashvi Group has always been clear: to build enterprises that enrich people's lives. Whether through elevating our rich Gujarati cultural celebrations, empowering local businesses through digital storytelling, bringing international hospitality to Surat, or providing shelter and education to orphan girls through Anand Vatika, we are dedicated to Surat's progress."
+          </blockquote>
+
+          <div class="leadership-positions">
+            <div class="pos-item"><i class="ph-bold ph-check"></i> Founder & Chairman, Yashvi Group Holdings</div>
+            <div class="pos-item"><i class="ph-bold ph-check"></i> Managing Partner, Yashvi Greenco LLP (IHG Hotel Partner)</div>
+            <div class="pos-item"><i class="ph-bold ph-check"></i> Founder, Yashvi Foundation & Anand Vatika</div>
+          </div>
+        </div>
+
+        <div class="leadership-hq-col">
+          <div class="hq-card-inner">
+            <div class="hq-pin-icon"><i class="ph ph-map-pin"></i></div>
+            <h4>Group Corporate Headquarters</h4>
+            <p class="hq-addr">
+              911, 9th Floor, Rio Empire,<br>
+              Near Pal RTO, Adajan, Hajira Road,<br>
+              Surat, Gujarat, India 395009.
+            </p>
+            <div class="hq-actions">
+              <a href="tel:+917490049007"><i class="ph ph-phone"></i> +91 7490049007</a>
+              <a href="mailto:info@yashvi-entertainments.com"><i class="ph ph-envelope"></i> info@yashvi-entertainments.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Universal Contact & Lead Engine -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-title-block text-center">
+        <span class="section-kicker">Connect With Us</span>
+        <h2 class="section-heading">Start a Conversation With Yashvi Group</h2>
+        <p class="section-subtext mx-auto">
+          Select your department of interest below. Our specialized division desk at Rio Empire will respond promptly.
+        </p>
+      </div>
+
+      <div class="contact-box-card">
+        <form class="lead-form" id="leadForm" onsubmit="handleFormSubmit(event)">
+          
+          <!-- Division Selector -->
+          <div class="division-selector-wrap">
+            <label class="form-label">Select Division</label>
+            <div class="division-buttons-row">
+              <button type="button" class="div-btn active" data-category="sponsorship" onclick="setCategory(this, 'Event Sponsorship & Stalls')">
+                <i class="ph ph-ticket"></i> Event Sponsorship & Stalls
+              </button>
+              <button type="button" class="div-btn" data-category="digital" onclick="setCategory(this, 'Digital Marketing & Studio')">
+                <i class="ph ph-video"></i> Digital Studio & Media
+              </button>
+              <button type="button" class="div-btn" data-category="news" onclick="setCategory(this, 'News Tip & Media Coverage')">
+                <i class="ph ph-broadcast"></i> Newsdesk Coverage
+              </button>
+              <button type="button" class="div-btn" data-category="hospitality" onclick="setCategory(this, 'Hospitality & Corporate Stays')">
+                <i class="ph ph-buildings"></i> Hospitality / Hotel Stays
+              </button>
+              <button type="button" class="div-btn" data-category="general" onclick="setCategory(this, 'General / CSR Inquiries')">
+                <i class="ph ph-dots-three"></i> General Inquiries
+              </button>
+            </div>
+            <input type="hidden" name="inquiry_type" id="inquiryTypeInput" value="Event Sponsorship & Stalls">
+          </div>
+
+          <div class="form-inputs-grid">
+            <div class="input-field-group">
+              <label for="fullName">Your Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="name" placeholder="e.g. Ramesh Patel" required>
+            </div>
+
+            <div class="input-field-group">
+              <label for="phoneNum">Phone / WhatsApp Number <span class="req">*</span></label>
+              <input type="tel" id="phoneNum" name="phone" placeholder="e.g. 98765 43210" required>
+            </div>
+
+            <div class="input-field-group">
+              <label for="emailAddr">Business Email Address <span class="req">*</span></label>
+              <input type="email" id="emailAddr" name="email" placeholder="name@company.com" required>
+            </div>
+
+            <div class="input-field-group">
+              <label for="companyName">Brand / Organization Name</label>
+              <input type="text" id="companyName" name="company" placeholder="e.g. Patel Jewelers / Kratos Club">
+            </div>
+
+            <div class="input-field-group full-col">
+              <label for="messageText">Project Scope / Requirements <span class="req">*</span></label>
+              <textarea id="messageText" name="message" rows="4" placeholder="Describe your sponsorship requirements, creative project, or corporate inquiry..." required></textarea>
+            </div>
+          </div>
+
+          <div class="form-submit-row">
+            <div class="hq-note">
+              <i class="ph-fill ph-shield-check"></i>
+              <span>Directly transmitted to Rio Empire corporate desk, Surat</span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+              <span>Submit Business Inquiry</span>
+              <i class="ph ph-paper-plane-tilt"></i>
+            </button>
+          </div>
+
+          <div class="success-alert-box" id="successBanner" style="display: none;">
+            <i class="ph-fill ph-check-circle"></i>
+            <div>
+              <strong>Inquiry Received Successfully</strong>
+              <p>Thank you for reaching out to Yashvi Group. Our division manager will get back to you within 24 hours.</p>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean Corporate Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main-grid">
+        
+        <div class="footer-col-brand">
+          <div class="brand-logo footer-brand">
+            <span class="brand-name">YASHVI GROUP</span>
+            <span class="brand-tag">SURAT</span>
+          </div>
+          <p class="footer-desc">
+            A diversified multi-industry group headquartered in Surat, Gujarat. Operating across cultural entertainment festivals, 360 degree digital agency marketing, community news media, and international branded hospitality.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://www.instagram.com/yashvientertainments/?hl=en" target="_blank" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="https://www.facebook.com/p/Yashvi-Entertainments-61562794227407" target="_blank" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+            <a href="https://youtube.com/@yashvientertainments" target="_blank" aria-label="YouTube"><i class="ph-fill ph-youtube-logo"></i></a>
+            <a href="https://wa.me/917490049007" target="_blank" aria-label="WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col-nav">
+          <h5>Core Verticals</h5>
+          <ul>
+            <li><a href="https://yashvi-entertainments.com" target="_blank">Yashvi Entertainments</a></li>
+            <li><a href="#digital">Yashvi Digital Studio</a></li>
+            <li><a href="#news">Yashvi Voice & News</a></li>
+            <li><a href="#hospitality">Holiday Inn Express (IHG)</a></li>
+            <li><a href="#hospitality">Yashvi Coal & Minerals</a></li>
+            <li><a href="#hospitality">Yashvi Anand Vatika (CSR)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col-nav">
+          <h5>Upcoming Events</h5>
+          <ul>
+            <li><a href="#events">Yashvi Navratri 3.0 (2026)</a></li>
+            <li><a href="#events">Purva Mantri Live Garba</a></li>
+            <li><a href="#events">Falguni Pathak Mega Night</a></li>
+            <li><a href="#events">Mithoon & Palak Live Symphony</a></li>
+            <li><a href="#events">New Year Mega Bash</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col-contact">
+          <h5>Corporate Office</h5>
+          <p><i class="ph ph-map-pin"></i> 911, 9th Floor, Rio Empire, Near Pal RTO, Adajan, Hajira Road, Surat 395009</p>
+          <p><i class="ph ph-phone"></i> +91 7490049007 / +91 74340 34011</p>
+          <p><i class="ph ph-envelope"></i> info@yashvi-entertainments.com</p>
+          
+          <div class="footer-app-links">
+            <a href="https://play.google.com/store/apps/details?id=com.yashvientertainments.apps" target="_blank" class="mini-app-badge">
+              <i class="ph-fill ph-google-play-logo"></i> Google Play
+            </a>
+            <a href="https://apps.apple.com/in/app/yashvi-entertainments/id6762739777" target="_blank" class="mini-app-badge">
+              <i class="ph-fill ph-apple-logo"></i> App Store
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Yashvi Group Holdings. All rights reserved. Surat, Gujarat, India.</p>
+        <div class="footer-legal-links">
+          <a href="https://yashvi-entertainments.com/privacy-policy" target="_blank">Privacy Policy</a>
+          <a href="https://yashvi-entertainments.com/terms-and-conditions" target="_blank">Terms & Conditions</a>
+          <a href="#contact">Corporate Sponsorship</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
